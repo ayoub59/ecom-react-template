@@ -1,42 +1,94 @@
-import React from 'react'
-import { styled } from 'styled-components'
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { Button } from 'react-bootstrap';
+// import { IconButton } from '@mui/material';
+import { IconButton } from '@mui/material';
+// import { Edit, Delete, AddShoppingCart } from '@mui/icons-material';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { EditLocationAltSharp } from '@mui/icons-material';
+const ItemWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+`;
 
-function Item(props) {
-    return (
-        <Container>
-            <Title>{props.name}</Title>
-            <ImageConatiner>
-                <Image src={props.link} alt="some random product" />
-            </ImageConatiner>
+const ItemImage = styled.img`
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+`;
 
-            <SubTitle>{props.disc}</SubTitle>
-            <SubTitle>{props.price}</SubTitle>
-        </Container>
-    )
-}
+const ItemDetails = styled.div`
+  flex: 1;
+`;
 
-export default Item
-const Container = styled.div`
-height: 30%;
-width: 30%;
-min-height: 100px;
-min-width: 100px;
-color: red;
-background-color: gray;
-display: flex;
-flex-direction: column;
-    align-items: center;
-`
-const ImageConatiner = styled.div`
-max-height: 100%;
-max-width: 100%;
-`
-const Title = styled.h3`
-/* font-family: poppins; */
-`
-const Image = styled.img`
-max-height: 100%;
-max-width: 100%;
+const ItemName = styled.h3`
+  margin: 0;
+`;
 
-`
-const SubTitle = styled.p``
+const ItemDescription = styled.p`
+  margin: 5px 0;
+`;
+
+const ItemPrice = styled.p`
+  margin: 5px 0;
+`;
+
+const ItemButtons = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const ItemButton = styled(Button)`
+  margin-right: 5px;
+`;
+
+const Item = ({ name, link, description, price }) => {
+  const handleDelete = () => {
+    // Implement delete functionality here
+  };
+
+  const handleEdit = () => {
+    // Implement edit functionality here
+  };
+
+  const handleAddToCart = () => {
+    // Implement add to cart functionality here
+  };
+
+  return (
+    <ItemWrapper>
+      <ItemImage src={link} alt={name} />
+      <ItemDetails>
+        <ItemName>{name}</ItemName>
+        <ItemDescription>{description}</ItemDescription>
+        <ItemPrice>Price: {price}</ItemPrice>
+        <ItemButtons>
+          <ItemButton variant="danger" onClick={handleDelete}>
+            <DeleteIcon /> Delete
+          </ItemButton>
+          <ItemButton variant="primary" onClick={handleEdit}>
+            <EditIcon /> Edit
+          </ItemButton>
+          <ItemButton variant="success" onClick={handleAddToCart}>
+            <AddShoppingCartIcon /> Add to Cart
+          </ItemButton>
+        </ItemButtons>
+      </ItemDetails>
+    </ItemWrapper>
+  );
+};
+
+Item.propTypes = {
+  name: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+};
+
+export default Item;
