@@ -10,14 +10,18 @@ import {
   Link
 } from "react-router-dom";
 import Add from './components/Add';
+import styled from "styled-components"
 
 function App() {
   return (
     <div className="App">
 
       <Router>
-        <Link to="/">Home</Link><br />
-        <Link to="add">add</Link>
+        <LinksContainer>
+          <Link to="/">Home</Link>
+          <Link to="add">add</Link>
+        </LinksContainer>
+
         <Routes>
           <Route path="/add" element={<Add />} />
           <Route path="/" element={<Home />} />
@@ -30,3 +34,10 @@ function App() {
 }
 
 export default App;
+const LinksContainer = styled.div`
+display: flex;
+justify-content: space-around;
+    height: 50px;
+    align-items: center;
+    margin-bottom: 20px;
+`

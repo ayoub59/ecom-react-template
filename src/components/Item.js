@@ -9,6 +9,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { EditLocationAltSharp } from '@mui/icons-material';
+
+
 const ItemWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -44,13 +46,21 @@ const ItemButtons = styled.div`
   align-items: center;
 `;
 
-const ItemButton = styled(Button)`
+const ItemButton = styled.button`
   margin-right: 5px;
+  background-color: none;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
 `;
 
-const Item = ({ name, link, description, price }) => {
+const Item = ({ name, image, disc, price, id }) => {
   const handleDelete = () => {
     // Implement delete functionality here
+    // how about console loging the product's id, but how???????
+    console.log(id)
   };
 
   const handleEdit = () => {
@@ -63,11 +73,12 @@ const Item = ({ name, link, description, price }) => {
 
   return (
     <ItemWrapper>
-      <ItemImage src={link} alt={name} />
+      <ItemImage src={image} alt={name} />
       <ItemDetails>
         <ItemName>{name}</ItemName>
-        <ItemDescription>{description}</ItemDescription>
+        <ItemDescription>{disc}</ItemDescription>
         <ItemPrice>Price: {price}</ItemPrice>
+        <ItemPrice>id: {id}</ItemPrice>
         <ItemButtons>
           <ItemButton variant="danger" onClick={handleDelete}>
             <DeleteIcon /> Delete
